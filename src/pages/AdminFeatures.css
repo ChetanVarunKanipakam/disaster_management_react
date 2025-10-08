@@ -1,0 +1,75 @@
+.announcement-container {
+  display: flex;
+  gap: 30px;
+}
+
+.form-container {
+  flex: 1;
+}
+
+.list-container {
+  flex: 2;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-container h2, .list-container h2 {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Announcement Form */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Important */
+}
+
+.form-container button {
+  padding: 12px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Announcement List */
+.announcement-card {
+  margin-bottom: 15px;
+}
+
+.announcement-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.announcement-card p {
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.announcement-card small {
+  color: #777;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .announcement-container {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,51 @@
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-header .actions button {
+    margin-left: 10px;
+}
+
+.filters-and-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.filters select {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.view-toggle button {
+    padding: 8px 16px;
+    border: 1px solid #1890ff;
+    background-color: transparent;
+    color: #1890ff;
+    cursor: pointer;
+}
+
+.view-toggle button:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.view-toggle button:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-left: none;
+}
+
+.view-toggle button.active {
+    background-color: #1890ff;
+    color: white;
+}
