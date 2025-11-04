@@ -32,7 +32,7 @@ const HeatmapLayer = ({ points }) => {
 
 
 const IncidentHotspotMap = ({ hotspots }) => {
-  const defaultPosition = [40.7128, -74.0060]; // Fallback center
+  const defaultPosition = [14.335006311539903, 78.54059633664295]; // Fallback center
 
   return (
     <div className="map-container">
