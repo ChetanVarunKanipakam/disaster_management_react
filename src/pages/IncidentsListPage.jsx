@@ -5,9 +5,7 @@ import IncidentsList from '../components/incidents/IncidentsList';
 import IncidentsMap from '../components/incidents/IncidentsMap';
 import Papa from 'papaparse';
 import {jsPDF} from 'jspdf';
-// import jsPDF from 'jspdf/dist/jspdf.umd.min.js';
 import { applyPlugin } from 'jspdf-autotable'
-
 
 import './ListPage.css'; // New CSS file for this page
 
@@ -68,45 +66,66 @@ const IncidentsListPage = () => {
   };
 
   return (
-    <div>
-      <div className="list-header">
-        <h1>Incident Management</h1>
-        <div className="actions">
-          <button onClick={handleExportCSV}>Export CSV</button>
-          <button onClick={handleExportPDF}>Export PDF</button>
+    <div className="lp-page">
+      <div className="lp-header card">
+        <div>
+          <h1 className="lp-title">Incident Management</h1>
+          <p className="lp-sub">Overview · monitor incidents · export reports</p>
+        </div>
+
+        <div className="lp-actions">
+          <button className="btn btn-outline" onClick={handleExportCSV}>Export CSV</button>
+          <button className="btn btn-primary" onClick={handleExportPDF}>Export PDF</button>
         </div>
       </div>
 
-      <div className="filters-and-view">
-        <div className="filters">
-            <select name="status" value={filters.status} onChange={handleFilterChange}>
-                <option value="">All Statuses</option>
-                <option value="PENDING">Pending</option>
-                <option value="IN_PROGRESS">In Progress</option>
-                <option value="RESOLVED">Resolved</option>
-            </select>
-            <select name="severity" value={filters.severity} onChange={handleFilterChange}>
-                <option value="">All Severities</option>
-                <option value="LOW">Low</option>
-                <option value="MEDIUM">Medium</option>
-                <option value="HIGH">High</option>
-            </select>
+      <div className="lp-controls">
+        <div className="lp-filters card">
+            <label className="lbl">
+              <span>Status</span>
+              <select name="status" value={filters.status} onChange={handleFilterChange} className="select">
+                  <option value="">All Statuses</option>
+                  <option value="PENDING">Pending</option>
+                  <option value="IN_PROGRESS">In Progress</option>
+                  <option value="RESOLVED">Resolved</option>
+              </select>
+            </label>
+
+            <label className="lbl">
+              <span>Severity</span>
+              <select name="severity" value={filters.severity} onChange={handleFilterChange} className="select">
+                  <option value="">All Severities</option>
+                  <option value="LOW">Low</option>
+                  <option value="MEDIUM">Medium</option>
+                  <option value="HIGH">High</option>
+              </select>
+            </label>
+
             {/* Add a type filter if you have types, e.g., FIRE, FLOOD */}
         </div>
-        <div className="view-toggle">
-            <button onClick={() => setViewMode('list')} className={viewMode === 'list' ? 'active' : ''}>List</button>
-            <button onClick={() => setViewMode('map')} className={viewMode === 'map' ? 'active' : ''}>Map</button>
+
+        <div className="lp-view card">
+            <div className="view-toggle">
+              <button onClick={() => setViewMode('list')} className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}>List</button>
+              <button onClick={() => setViewMode('map')} className={`view-btn ${viewMode === 'map' ? 'active' : ''}`}>Map</button>
+            </div>
         </div>
       </div>
 
-      {status === 'loading' && <p>Loading incidents...</p>}
-      {status === 'failed' && <p>Error: {error}</p>}
+      {status === 'loading' && <div className="lp-status">Loading incidents...</div>}
+      {status === 'failed' && <div className="lp-status lp-error">Error: {error}</div>}
       
-      {viewMode === 'list' ? (
-        <IncidentsList incidents={incidents} />
-      ) : (
-        <IncidentsMap incidents={incidents} />
-      )}
+      <div className="lp-content">
+        {viewMode === 'list' ? (
+          <div className="lp-panel card">
+            <IncidentsList incidents={incidents} />
+          </div>
+        ) : (
+          <div className="lp-panel card">
+            <IncidentsMap incidents={incidents} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

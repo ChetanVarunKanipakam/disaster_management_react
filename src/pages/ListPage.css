@@ -49,3 +49,207 @@
     background-color: #1890ff;
     color: white;
 }
+
+/* ListPage.css
+   Modern white UI for Incidents list page
+   - White cards, soft shadows, blue & amber accents
+   - Responsive, clean spacing
+*/
+
+/* Variables */
+:root{
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #111827;
+  --accent: #2563eb;    /* blue */
+  --accent-2: #f59e0b;  /* amber */
+  --border: #e6e9ee;
+  --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  --soft-shadow: 0 3px 10px rgba(15,23,42,0.04);
+}
+
+/* Page layout */
+.lp-page{
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+}
+
+/* Card shared */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* Header */
+.lp-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 20px;
+  padding: 20px 24px;
+}
+
+.lp-title{
+  margin:0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lp-sub{
+  margin:4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Actions */
+.lp-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* Buttons */
+.btn{
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+}
+
+.btn-primary{
+  background: linear-gradient(180deg,var(--accent),#1e40af);
+  color: white;
+  box-shadow: var(--soft-shadow);
+  border-color: rgba(0,0,0,0.03);
+}
+
+.btn-primary:hover{ transform: translateY(-2px); }
+
+.btn-outline{
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Controls (filters + view toggle) */
+.lp-controls{
+  display:flex;
+  gap:16px;
+  margin-top: 18px;
+  align-items: flex-start;
+  flex-wrap:wrap;
+}
+
+/* Filters card */
+.lp-filters{
+  display:flex;
+  gap:12px;
+  padding:12px;
+  align-items:center;
+}
+
+/* Each label in filters */
+.lbl{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* select styling */
+.select{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background: white;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  min-width: 160px;
+}
+
+/* View toggle card */
+.lp-view{
+  margin-left: auto;
+  padding: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.view-toggle{
+  display:flex;
+  gap:8px;
+  padding:8px;
+  align-items:center;
+}
+
+.view-btn{
+  background: transparent;
+  border:1px solid var(--border);
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+.view-btn.active{
+  background: linear-gradient(180deg,var(--accent),#1e40af);
+  color:white;
+  border-color: transparent;
+  box-shadow: var(--soft-shadow);
+  transform: translateY(-1px);
+}
+
+/* Status messages */
+.lp-status{
+  margin-top: 18px;
+  padding: 12px;
+  color: var(--muted);
+}
+
+.lp-error{
+  color: #b91c1c;
+  background: #fff1f2;
+  border:1px solid #fee2e2;
+  border-radius:8px;
+}
+
+/* Content area */
+.lp-content{
+  margin-top: 18px;
+}
+
+/* Panel that contains the list or map */
+.lp-panel{
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* Make IncidentsList/Map area slightly elevated on wider screens */
+@media (min-width: 900px){
+  .lp-panel{ padding: 20px; }
+  .lp-header{ padding: 22px 28px; }
+}
+
+/* Small screens */
+@media (max-width: 640px){
+  .lp-controls{ flex-direction: column; }
+  .lp-filters{ width:100%; flex-wrap:wrap; }
+  .lp-view{ width:100%; margin-left:0; justify-content:flex-start; padding-top:8px; }
+  .select{ min-width: 100%; }
+  .lp-header{ flex-direction:column; align-items:flex-start; gap:8px; padding:16px; }
+}

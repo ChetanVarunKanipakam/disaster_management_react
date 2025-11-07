@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { changeUserRole, banUser } from '../../features/users/usersSlice';
+import '../volunteers/Lists.css';
 
 const UsersList = ({ users }) => {
   const dispatch = useDispatch();
@@ -14,33 +15,44 @@ const UsersList = ({ users }) => {
   };
 
   if (!users || users.length === 0) {
-    return <p>No users found.</p>;
+    return <p className="list-empty">No users found.</p>;
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.role}</td>
-            <td>
-              <button onClick={() => handlePromote(user.id)}>Promote to Volunteer</button>
-              <button onClick={() => handleBan(user.id)} style={{ marginLeft: '8px', backgroundColor: '#dc3545' }}>Ban User</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="list-card">
+      <div className="list-header-row">
+        <h2 className="list-title">Users</h2>
+        <div className="list-sub">Promote, manage or ban platform users</div>
+      </div>
+
+      <div className="table-wrapper">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id || user._id}>
+                <td className="td-name">{user.name}</td>
+                <td className="td-mono">{user.email}</td>
+                <td>
+                  <span className="role-tag">{user.role}</span>
+                </td>
+                <td>
+                  <button className="btn btn-ghost" onClick={() => handlePromote(user.id)}>Promote to Volunteer</button>
+                  <button className="btn btn-danger" onClick={() => handleBan(user.id)} style={{ marginLeft: '8px' }}>Ban User</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

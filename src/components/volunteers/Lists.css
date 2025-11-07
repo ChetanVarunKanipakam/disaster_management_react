@@ -1,0 +1,196 @@
+/* Lists.css
+   Shared styling for VolunteersList and UsersList
+   - White card, soft shadows, blue/amber accents
+   - Responsive table and nice buttons
+*/
+
+:root{
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e6e9ee;
+  --accent: #2563eb;    /* blue */
+  --accent-2: #f59e0b;  /* amber */
+  --danger: #dc2626;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+/* Container card */
+.list-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin: 16px 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+}
+
+/* Header row */
+.list-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.list-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.list-sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Empty state */
+.list-empty {
+  padding: 14px;
+  background: #fff7ed;
+  border: 1px solid #feecd1;
+  color: #92400e;
+  border-radius: 8px;
+  max-width: 700px;
+}
+
+/* Table wrapper for responsive scroll */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Table base */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  background: white;
+}
+
+.admin-table thead th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+  background: #fbfdff;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* Name column with slight emphasis */
+.td-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Monospaced / small text */
+.td-mono {
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+/* Status dot */
+.status-dot {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.status-dot.available {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.status-dot.unavailable {
+  background: #fff1f2;
+  color: #b91c1c;
+}
+
+/* Role tag */
+.role-tag {
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Links and actions */
+.action-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+  color: var(--accent-2);
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .12s ease;
+}
+
+/* ghost / subtle button */
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(37,99,235,0.08);
+}
+
+.btn-ghost:hover {
+  background: rgba(37,99,235,0.06);
+}
+
+/* danger */
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.btn-danger:hover {
+  filter: brightness(0.95);
+}
+
+/* Responsive tweaks */
+@media (max-width: 820px) {
+  .admin-table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .list-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .td-mono { display: none; } /* hide monospace columns on small screens if needed */
+}

@@ -45,10 +45,11 @@ const incidentsSlice = createSlice({
       })
       // Matchers for pending and rejected
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
+        // Only match actions that are from this slice AND are pending
+        (action) => action.type.startsWith('incidents/') && action.type.endsWith('/pending'),
         (state) => {
           state.status = 'loading';
-          state.error = null; // Also good to clear old errors
+          state.error = null;
         }
       )
       .addMatcher(

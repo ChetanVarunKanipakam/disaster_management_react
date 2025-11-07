@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVolunteers } from '../features/volunteers/volunteersSlice';
+import { fetchVolunteers1 } from '../features/volunteers/volunteersSlice';
 import VolunteersList from '../components/volunteers/VolunteersList';
 
 const VolunteersPage = () => {
@@ -10,7 +10,7 @@ const VolunteersPage = () => {
   useEffect(() => {
     // Only fetch if the list is empty
     if (volunteers.length === 0) {
-      dispatch(fetchVolunteers());
+      dispatch(fetchVolunteers1());
     }
   }, [dispatch, volunteers.length]);
   console.log(volunteers);

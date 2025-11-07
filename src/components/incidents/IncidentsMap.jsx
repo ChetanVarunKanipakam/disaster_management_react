@@ -29,7 +29,7 @@ const IncidentsMap = ({ incidents }) => {
               <strong>{incident.title}</strong><br/>
               Severity: {incident.severity}<br/>
               Status: {incident.status}<br/>
-              <Link to={`/incidents1/${incident.id}`}>View Details</Link>
+              <Link to={`/incidents/${incident.id}`}>View Details</Link>
             </Popup>
           </Marker>
         );

@@ -2,8 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as volunteersApi from './volunteersApi';
 
 export const getVolunteerStats = createAsyncThunk('volunteers/getStats', async () => (await volunteersApi.getStats()).data);
-export const fetchVolunteers = createAsyncThunk('volunteers/fetchAll', async () => (await volunteersApi.getVolunteers()).data);
+export const fetchVolunteers = createAsyncThunk('volunteers/fetchAll', async (params) => {
+ const response= await volunteersApi.getVolunteers(params);
+ console.log(response)
+ return response.data
+});
 export const fetchVolunteerProfile = createAsyncThunk('volunteers/fetchOne', async (id) => (await volunteersApi.getVolunteerById(id)).data);
+export const fetchVolunteers1 = createAsyncThunk('volunteers1/fetchAll', async () => (await volunteersApi.getVolunteers1()).data);
 
 // New async thunk for incident history
 export const fetchIncidentHistory = createAsyncThunk('volunteers/fetchHistory', async (volunteerId) => {
@@ -31,6 +36,11 @@ const volunteersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchVolunteers.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.status= 'succeeded'
+        state.list = action.payload || []; 
+      })
+      .addCase(fetchVolunteers1.fulfilled, (state, action) => {
         state.status= 'succeeded'
         state.list = action.payload;
       })

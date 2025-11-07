@@ -1,3 +1,13 @@
+@import "tailwindcss";
+:root {
+  --dm-bg: #071426;        /* deep navy */
+  --dm-card: #0b2338;      /* card background */
+  --dm-contrast: #ffd166;  /* emergency amber */
+  --dm-danger: #ff6b6b;    /* danger / alert */
+  --dm-accent: #38bdf8;    /* accent blue */
+  --dm-muted: #94a3b8;     /* muted text */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
