@@ -271,10 +271,6 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="decorative-blob-left"></div>
-      <div className="decorative-blob-right"></div>
     </div>
   );
 };
