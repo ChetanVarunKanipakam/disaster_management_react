@@ -1,0 +1,144 @@
+/* /src/components/overview/StatCard.css */
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.stat-card-icon {
+  font-size: 2.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 18px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(102, 126, 234, 0.22);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.grid-item:hover .stat-card-icon {
+  transform: scale(1.08) rotate(5deg);
+}
+
+.stat-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-card-title {
+  color: #718096;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.stat-card-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.stat-card-unit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a0aec0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+  .stat-card {
+    gap: 16px;
+  }
+
+  .stat-card-icon {
+    font-size: 2.5rem;
+    padding: 16px;
+  }
+
+  .stat-card-value {
+    font-size: 2rem;
+  }
+
+  .stat-card-title {
+    font-size: 0.75rem;
+  }
+
+  .stat-card-unit {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    gap: 14px;
+  }
+
+  .stat-card-icon {
+    font-size: 2.25rem;
+    padding: 14px;
+  }
+
+  .stat-card-value {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .stat-card-icon {
+    font-size: 2.5rem;
+    padding: 16px;
+  }
+
+  .stat-card-info {
+    align-items: center;
+  }
+
+  .stat-card-value {
+    font-size: 2rem;
+    justify-content: center;
+  }
+
+  .stat-card::after {
+    display: none;
+  }
+}

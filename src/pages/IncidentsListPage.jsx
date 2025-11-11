@@ -16,8 +16,7 @@ const IncidentsListPage = () => {
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'map'
   const [filters, setFilters] = useState({
     status: 'PENDING',
-    severity: 'HIGH',
-    type: 'FIRE',
+    severity: 'HIGH'
   });
 
   useEffect(() => {

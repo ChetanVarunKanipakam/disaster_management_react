@@ -1,5 +1,5 @@
 import React from 'react';
-import './Overview.css';
+import './StatCard.css';
 
 const StatCard = ({ title, value, unit, icon }) => {
   return (

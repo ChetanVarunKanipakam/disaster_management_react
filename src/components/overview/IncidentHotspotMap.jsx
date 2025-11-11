@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet.heat';
+import './IncidentHotspotMap.css';
 
 // Heatmap Layer Component
 const HeatmapLayer = ({ points }) => {
@@ -29,7 +30,6 @@ const HeatmapLayer = ({ points }) => {
 
   return null;
 };
-
 
 const IncidentHotspotMap = ({ hotspots }) => {
   const defaultPosition = [14.335006311539903, 78.54059633664295]; // Fallback center

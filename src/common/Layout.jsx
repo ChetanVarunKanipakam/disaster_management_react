@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
             <li><Link to="/incidents" className={location.pathname.startsWith('/incidents') ? 'active' : ''}>Incidents</Link></li>
             <li><Link to="/volunteers" className={location.pathname.startsWith('/volunteers') ? 'active' : ''}>Volunteers</Link></li>
             <li><Link to="/users" className={location.pathname.startsWith('/users') ? 'active' : ''}>Users</Link></li>
-            <li style={{marginTop: '20px', borderTop: '1px solid #34495e', paddingTop: '20px'}}><Link to="/announcements" className={location.pathname.startsWith('/announcements') ? 'active' : ''}>Announcements</Link></li>
+            <li class='announcements'><Link to="/announcements" className={location.pathname.startsWith('/announcements') ? 'active' : ''}>Announcements</Link></li>
             <li><Link to="/audit-logs" className={location.pathname.startsWith('/audit-logs') ? 'active' : ''}>Audit Logs</Link></li>
           </ul>
           <button onClick={() => dispatch(logout())}>Logout</button>

@@ -9,7 +9,7 @@ import {
 import StatCard from '../components/overview/StatCard';
 import IncidentBreakdownChart from '../components/overview/IncidentBreakdownChart';
 import IncidentHotspotMap from '../components/overview/IncidentHotspotMap';
-import '../components/overview/Overview.css'; // New shared CSS file
+import './OverviewPage.css';
 
 const OverviewPage = () => {
   const dispatch = useDispatch();

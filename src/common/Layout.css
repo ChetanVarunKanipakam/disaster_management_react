@@ -3,126 +3,306 @@
 /* --- General Body and Root Styling --- */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #f2f4f8;
-  color: #333;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  color: #2d3748;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* The root element of your entire React app */
-.app-container { /* This is the div wrapping everything in Layout.jsx */
+.app-container {
   min-height: 100vh;
-  display: flex; /* This ensures the authenticated-layout div also takes full height */
+  display: flex;
   width: 100%;
 }
 
 /* This is the container specifically for the side-by-side nav and main content */
 .authenticated-layout {
-  display: flex; /* <-- THIS IS THE KEY CHANGE */
-  flex-grow: 1; /* Make sure it expands to fill app-container */
+  display: flex;
+  flex-grow: 1;
+  position: relative;
 }
-
 
 /* --- Navigation Bar Styling --- */
 nav {
-  width: 250px;
-  background-color: #2c3e50;
-  color: #ecf0f1;
-  padding: 25px 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 260px;
+  background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
+  color: #e2e8f0;
+  padding: 24px 0;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-shrink: 0; /* Prevents nav from shrinking */
+  flex-shrink: 0;
+  position: relative;
+  z-index: 100;
+}
+
+nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
 nav ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0 16px;
   margin: 0;
 }
 
 nav ul li {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+}
+
+.announcements{
+  margin-top: 20px;
+  border-top: 1px solid #34495e;
+  padding-top: 20px
 }
 
 nav ul li a {
-  color: #bdc3c7;
+  color: #cbd5e0;
   text-decoration: none;
-  font-size: 1.05rem;
-  padding: 12px 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  background-color: #34495e;
+nav ul li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav ul li a:hover {
+  background: rgba(102, 126, 234, 0.15);
   color: #ffffff;
-  box-shadow: inset 3px 0 0 #e74c3c;
+  transform: translateX(4px);
+}
+
+nav ul li a.active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+nav ul li a.active::before {
+  transform: scaleY(1);
+}
+
+nav ul li:has(a[style*="marginTop"]) {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(203, 213, 224, 0.1);
 }
 
 /* --- Logout Button Styling --- */
 nav button {
-  width: 100%;
-  padding: 12px 15px;
-  background-color: #e74c3c;
+  width: calc(100% - 32px);
+  margin: 0 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  transition: background-color 0.2s ease-in-out;
-  margin-top: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+nav button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
 }
 
 nav button:hover {
-  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+}
+
+nav button:hover::before {
+  left: 100%;
+}
+
+nav button:active {
+  transform: translateY(0);
 }
 
 /* --- Main Content Area Styling --- */
 main {
   flex-grow: 1;
-  padding: 30px;
+  padding: 32px;
   overflow-y: auto;
+  background: #f7fafc;
+  position: relative;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+main h1 {
+  color: #1a202c;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+/* Custom Scrollbar */
+main::-webkit-scrollbar {
+  width: 8px;
+}
+
+main::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #5568d3 0%, #664a8f 100%);
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .authenticated-layout {
-    flex-direction: column; /* Stack nav and main content on smaller screens */
+    flex-direction: column;
   }
 
   nav {
     width: 100%;
     height: auto;
-    padding: 15px 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    order: -1; /* Ensure nav appears first */
+  }
+
+  nav::before {
+    height: 3px;
   }
 
   nav ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
   }
 
   nav ul li {
     margin-bottom: 0;
+    margin: 0;
+  }
+
+  .announcements{
+    margin : 0;
+    padding : 0;
+    border : none;
   }
 
   nav ul li a {
-    font-size: 0.9rem;
-    padding: 8px 10px;
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+
+  nav ul li:has(a[style*="marginTop"]) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
 
   nav button {
-    margin-top: 15px;
-    width: auto;
+    margin: 12px auto 8px;
+    width: calc(100% - 24px);
+    max-width: 200px;
     font-size: 0.9rem;
+    padding: 10px;
   }
 
   main {
-    padding: 20px;
+    padding: 24px 20px;
+  }
+
+  main h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  nav ul {
+    padding: 8px;
+    gap: 6px;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  nav button {
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+
+  main {
+    padding: 20px 16px;
+  }
+
+  main h1 {
+    font-size: 1.75rem;
+    margin-bottom: 16px;
   }
 }

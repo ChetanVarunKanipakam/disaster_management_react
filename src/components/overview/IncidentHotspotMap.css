@@ -1,0 +1,73 @@
+/* /src/components/overview/IncidentHotspotMap.css */
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-container h3 {
+  margin: 0 0 18px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  position: relative;
+  padding-left: 14px;
+  flex-shrink: 0;
+}
+
+.map-container h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+/* Map specific styling */
+.map-container .leaflet-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.1);
+  flex: 1;
+  min-height: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+  .map-container h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .map-container .leaflet-container {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container h3 {
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    padding-left: 12px;
+  }
+
+  .map-container h3::before {
+    height: 16px;
+  }
+
+  .map-container .leaflet-container {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container .leaflet-container {
+    min-height: 280px;
+  }
+}
