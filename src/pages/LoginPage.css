@@ -5,13 +5,26 @@
   box-sizing: border-box;
 }
 
+/* Remove main padding and background for login page ONLY */
+main:has(.login-page) {
+  padding: 0 !important;
+  background: transparent !important;
+  margin-left: 0 !important;
+  min-height: 100vh !important;
+}
+
+main:has(.login-page)::before {
+  display: none !important;
+}
+
 /* Main Container */
 .login-page {
   min-height: 100vh;
+  width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e293b 100%);
 }

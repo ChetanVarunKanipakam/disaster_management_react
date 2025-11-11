@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { assignVolunteer, updateStatus } from '../../features/incidents/incidentsApi';
 import { fetchIncidentDetails } from '../../features/incidents/incidentsSlice';
 import { Link } from 'react-router-dom';
+import './IncidentDetails.css';
+
 const IncidentDetails = ({ incident, volunteers, volunteerStatus }) => {
   const dispatch = useDispatch();
-  // const [selectedVolunteer, setSelectedVolunteer] = useState('');
   const [selectedStatus, setSelectedStatus] = useState(incident.status);
 
   const handleAssign = async (volunteerId) => {
@@ -14,7 +15,6 @@ const IncidentDetails = ({ incident, volunteers, volunteerStatus }) => {
       return;
     }
     try {
-      // Use the volunteerId passed to the function
       await assignVolunteer(incident.id, volunteerId); 
       alert('Volunteer assigned successfully!');
       dispatch(fetchIncidentDetails(incident.id));
@@ -35,92 +35,92 @@ const IncidentDetails = ({ incident, volunteers, volunteerStatus }) => {
     }
   };
 
+  const getStatusClass = (status) => {
+    switch(status) {
+      case 'RESOLVED':
+        return 'status-resolved';
+      case 'IN_PROGRESS':
+        return 'status-progress';
+      case 'CLOSED':
+        return 'status-closed';
+      case 'ACKNOWLEDGED':
+        return 'status-acknowledged';
+      default:
+        return 'status-pending';
+    }
+  };
+
   return (
-    <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+    <div className="incident-details-container">
       {/* Header */}
-      <div className="flex flex-wrap justify-between items-start border-b pb-4 mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-1">
-            {incident.title}
-          </h1>
-          <p className="text-sm text-gray-500">
-            Reported by <span className="font-medium">{incident.reporter.name || 'N/A'}</span> on{' '}
+      <div className="incident-header">
+        <div className="incident-title-section">
+          <h1 className="incident-title">{incident.title}</h1>
+          <p className="incident-metadata">
+            Reported by <span className="reporter-name">{incident.reporter.name || 'N/A'}</span> on{' '}
             {new Date(incident.createdAt).toLocaleString()}
           </p>
         </div>
-        <span
-          className={`px-3 py-1 rounded-full text-sm font-semibold ${
-            incident.status === 'RESOLVED'
-              ? 'bg-green-100 text-green-700'
-              : incident.status === 'IN_PROGRESS'
-              ? 'bg-yellow-100 text-yellow-700'
-              : incident.status === 'CLOSED'
-              ? 'bg-gray-200 text-gray-700'
-              : 'bg-red-100 text-red-700'
-          }`}
-        >
+        <span className={`status-badge ${getStatusClass(incident.status)}`}>
           {incident.status}
         </span>
       </div>
 
       {/* Info grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-3">
-          <p>
-            <strong className="text-gray-700">ID:</strong> {incident.id}
-          </p>
-          <p>
-            <strong className="text-gray-700">Type:</strong> {incident.type}
-          </p>
-          <p>
-            <strong className="text-gray-700">Severity:</strong>{' '}
-            <span className="font-medium text-red-600">{incident.severity}</span>
-          </p>
-          <p>
-            <strong className="text-gray-700">Description:</strong>{' '}
-            <span className="text-gray-600">{incident.description}</span>
-          </p>
-          <p>
-            <strong className="text-gray-700">Assigned To:</strong>{' '}
-            {incident.assignedVolunteer
-              ? incident.assignedVolunteer.name
-              : 'Not Assigned'}
-          </p>
+      <div className="incident-grid">
+        <div className="incident-info">
+          <div className="info-item">
+            <strong>ID:</strong> <span>{incident.id}</span>
+          </div>
+          <div className="info-item">
+            <strong>Type:</strong> <span>{incident.type}</span>
+          </div>
+          <div className="info-item">
+            <strong>Severity:</strong> <span className="severity-badge">{incident.severity}</span>
+          </div>
+          <div className="info-item">
+            <strong>Description:</strong> <span className="description-text">{incident.description}</span>
+          </div>
+          <div className="info-item">
+            <strong>Assigned To:</strong>{' '}
+            <span>
+              {incident.assignedVolunteer
+                ? incident.assignedVolunteer.name
+                : 'Not Assigned'}
+            </span>
+          </div>
         </div>
 
         {incident.photoUrl && (
-          <div className="flex justify-center items-center">
+          <div className="incident-photo-container">
             <img
               src={`http://localhost:4000${incident.photoUrl}`}
               alt="Incident"
-              className="rounded-xl w-full max-w-md shadow-md border border-gray-200"
+              className="incident-photo"
             />
           </div>
         )}
       </div>
 
-      <hr className="my-8 border-gray-200" />
+      <hr className="divider" />
 
       {/* Update Status */}
-      <div className="bg-gray-50 p-5 rounded-xl shadow-sm border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
-          Update Status
-        </h2>
-        <div className="flex flex-wrap gap-3">
+      <div className="action-card">
+        <h2 className="card-title">Update Status</h2>
+        <div className="status-controls">
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="status-select"
           >
             <option value="PENDING">Pending</option>
-            <option value="ACKNOWLEDGED">ACKNOWLEDGED </option>
+            <option value="ACKNOWLEDGED">Acknowledged</option>
             <option value="IN_PROGRESS">In Progress</option>
             <option value="RESOLVED">Resolved</option>
-            
           </select>
           <button
             onClick={handleStatusUpdate}
-            className="px-5 py-2 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition"
+            className="btn btn-primary"
           >
             Update Status
           </button>
@@ -128,42 +128,42 @@ const IncidentDetails = ({ incident, volunteers, volunteerStatus }) => {
       </div>
 
       {/* Assign Volunteer */}
-      <div className="bg-gray-50 p-5 rounded-xl shadow-sm border border-gray-200 mt-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
-          Assign Nearby Volunteer
-        </h2>
+      <div className="action-card volunteer-card">
+        <h2 className="card-title">Assign Nearby Volunteer</h2>
 
         {volunteerStatus === 'loading' ? (
-          <p className="text-gray-500 text-sm">Loading nearby volunteers...</p>
+          <p className="loading-text">Loading nearby volunteers...</p>
         ) : volunteers.length === 0 ? (
-          <p className="text-gray-500 text-sm">No available volunteers found nearby.</p>
+          <p className="no-data-text">No available volunteers found nearby.</p>
         ) : (
-          <ul className="space-y-3">
+          <ul className="volunteer-list">
             {volunteers.map((v) => (
-              <li 
-                key={v.userId} 
-                className="flex flex-wrap justify-between items-center bg-white p-3 rounded-lg border"
-              >
-                <div>
-                  <p className="font-semibold text-gray-800">{v.userProfile.name}</p>
+              <li key={v.userId} className="volunteer-item">
+                <div className="volunteer-info">
+                  <p className="volunteer-name">{v.userProfile.name}</p>
                   {v.distance && (
-                     <p className="text-sm text-gray-500">
-                        Distance: {(v.distance / 1000).toFixed(2)} km
-                     </p>
+                    <p className="volunteer-distance">
+                      Distance: {(v.distance / 1000).toFixed(2)} km
+                    </p>
                   )}
                 </div>
-                {v.isAvailable?<div className="text-green-500">Available</div>:<div className="text-red-500">NotAvailable</div>}
-                <div className="flex items-center gap-3">
+                <div className="availability-badge">
+                  {v.isAvailable ? (
+                    <span className="badge-available">Available</span>
+                  ) : (
+                    <span className="badge-unavailable">Not Available</span>
+                  )}
+                </div>
+                <div className="volunteer-actions">
                   <Link
                     to={`/volunteers/${v.userId}`}
-                    className="px-4 py-1.5 text-sm bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition"
+                    className="btn btn-secondary"
                   >
                     View Details
                   </Link>
                   <button
-                    // The onClick handler is now correct because handleAssign accepts the ID
                     onClick={() => handleAssign(v.userId)}
-                    className="px-5 py-1.5 bg-amber-500 text-white rounded-md font-medium hover:bg-amber-600 transition"
+                    className="btn btn-assign"
                   >
                     Assign
                   </button>
