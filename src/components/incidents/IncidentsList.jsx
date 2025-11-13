@@ -59,7 +59,7 @@ const IncidentsList = ({ incidents }) => {
                 </span>
               </td>
               <td>
-                <Link to={`/incidents/${incident.id}`} className="action-link">
+                <Link to={`/admin/incidents/${incident.id}`} className="action-link">
                   View Details →
                 </Link>
               </td>

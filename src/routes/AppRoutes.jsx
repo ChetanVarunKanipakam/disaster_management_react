@@ -1,8 +1,12 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; // Import useLocation
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// --- (Import all your page components) ---
+// Import Layout
+import Layout from '../common/Layout';
+
+// Import all your page components
+import LandingPage from '../pages/LandingPage';
 import LoginPage from '../pages/LoginPage';
 import OverviewPage from '../pages/OverviewPage';
 import IncidentsListPage from '../pages/IncidentsListPage';
@@ -13,18 +17,17 @@ import UserManagementPage from '../pages/UserManagementPage';
 import AnnouncementsPage from '../pages/AnnouncementsPage';
 import AuditLogsPage from '../pages/AuditLogsPage';
 
-// PrivateRoute: If not authenticated, redirect to /login.
+// PrivateRoute: If not authenticated, redirect to /admin/login
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
 
   if (!isAuthenticated) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to. This allows us to send them back after they log in.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
-  return children;
+  // Wrap authenticated routes with Layout
+  return <Layout>{children}</Layout>;
 };
 
 const AppRoutes = () => {
@@ -32,29 +35,28 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      {/* --- MODIFIED LOGIN ROUTE --- */}
-      {/* If the user is authenticated, redirect from /login to the overview page. */}
-      {/* Otherwise, show the LoginPage component. */}
+      {/* PUBLIC ROUTES - No Layout */}
+      {/* Landing Page - Main entry point */}
+      <Route path="/" element={<LandingPage />} />
+      
+      {/* Admin Login - No Layout */}
       <Route
-        path="/login"
-        element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
+        path="/admin/login"
+        element={isAuthenticated ? <Navigate to="/admin" replace /> : <LoginPage />}
       />
 
-      {/* --- PROTECTED ROUTES --- */}
-      <Route path="/" element={<PrivateRoute><OverviewPage /></PrivateRoute>} />
-      <Route path="/incidents" element={<PrivateRoute><IncidentsListPage /></PrivateRoute>} />
-      <Route path="/incidents/:id" element={<PrivateRoute><IncidentDetailsPage /></PrivateRoute>} />
-      <Route path="/volunteers" element={<PrivateRoute><VolunteersPage /></PrivateRoute>} />
-      <Route path="/volunteers/:id" element={<PrivateRoute><VolunteerProfilePage /></PrivateRoute>} />
-      <Route path="/users" element={<PrivateRoute><UserManagementPage /></PrivateRoute>} />
-      <Route path="/announcements" element={<PrivateRoute><AnnouncementsPage /></PrivateRoute>} />
-      <Route path="/audit-logs" element={<PrivateRoute><AuditLogsPage /></PrivateRoute>} />
+      {/* PROTECTED ADMIN ROUTES - Wrapped with Layout via PrivateRoute */}
+      <Route path="/admin" element={<PrivateRoute><OverviewPage /></PrivateRoute>} />
+      <Route path="/admin/incidents" element={<PrivateRoute><IncidentsListPage /></PrivateRoute>} />
+      <Route path="/admin/incidents/:id" element={<PrivateRoute><IncidentDetailsPage /></PrivateRoute>} />
+      <Route path="/admin/volunteers" element={<PrivateRoute><VolunteersPage /></PrivateRoute>} />
+      <Route path="/admin/volunteers/:id" element={<PrivateRoute><VolunteerProfilePage /></PrivateRoute>} />
+      <Route path="/admin/users" element={<PrivateRoute><UserManagementPage /></PrivateRoute>} />
+      <Route path="/admin/announcements" element={<PrivateRoute><AnnouncementsPage /></PrivateRoute>} />
+      <Route path="/admin/audit-logs" element={<PrivateRoute><AuditLogsPage /></PrivateRoute>} />
 
-      {/* Optional: A catch-all route to redirect to the overview page if logged in, or login if not */}
-      <Route
-        path="*"
-        element={<Navigate to="/" replace />}
-      />
+      {/* Catch-all route - redirect to landing page */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

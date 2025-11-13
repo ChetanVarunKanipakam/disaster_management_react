@@ -83,7 +83,7 @@ const VolunteerProfile = ({ profile, history }) => {
                       </td>
                       <td>{incident.resolvedAt ? new Date(incident.resolvedAt).toLocaleDateString() : 'Pending'}</td>
                       <td>
-                        <Link to={`/incidents/${incident.id}`} className="vp-link">
+                        <Link to={`/admin/incidents/${incident.id}`} className="vp-link">
                           View Incident
                         </Link>
                       </td>

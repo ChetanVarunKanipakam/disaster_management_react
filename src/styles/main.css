@@ -9,18 +9,34 @@
   --dm-muted: #94a3b8;     /* muted text */
 }
 
+/* Global body styles - default for all pages */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  background: #f7fafc;
+  padding: 0;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
 }
 
-/* Navigation Styles */
-nav {
+/* ============================================
+   ADMIN DASHBOARD STYLES
+   Only apply to elements with .admin-layout class
+   ============================================ */
+
+/* Admin body background override */
+.admin-layout {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Navigation Styles - Only for Admin */
+.admin-layout nav {
   width: 260px;
   background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
   color: white;
@@ -38,24 +54,24 @@ nav {
 }
 
 /* Custom Scrollbar for Nav */
-nav::-webkit-scrollbar {
+.admin-layout nav::-webkit-scrollbar {
   width: 6px;
 }
 
-nav::-webkit-scrollbar-track {
+.admin-layout nav::-webkit-scrollbar-track {
   background: #1a202c;
 }
 
-nav::-webkit-scrollbar-thumb {
+.admin-layout nav::-webkit-scrollbar-thumb {
   background: rgba(102, 126, 234, 0.5);
   border-radius: 3px;
 }
 
-nav::-webkit-scrollbar-thumb:hover {
+.admin-layout nav::-webkit-scrollbar-thumb:hover {
   background: rgba(102, 126, 234, 0.7);
 }
 
-nav::before {
+.admin-layout nav::before {
   content: '';
   position: absolute;
   top: 0;
@@ -66,17 +82,17 @@ nav::before {
   z-index: 1;
 }
 
-nav ul {
+.admin-layout nav ul {
   list-style-type: none;
   padding: 0 16px;
   margin: 0;
 }
 
-nav ul li {
+.admin-layout nav ul li {
   margin-bottom: 6px;
 }
 
-nav ul li a {
+.admin-layout nav ul li a {
   color: #cbd5e0;
   text-decoration: none;
   font-size: 0.95rem;
@@ -89,7 +105,7 @@ nav ul li a {
   overflow: hidden;
 }
 
-nav ul li a::before {
+.admin-layout nav ul li a::before {
   content: '';
   position: absolute;
   left: 0;
@@ -101,24 +117,24 @@ nav ul li a::before {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-nav ul li a:hover,
-nav ul li a.active {
+.admin-layout nav ul li a:hover,
+.admin-layout nav ul li a.active {
   background: rgba(102, 126, 234, 0.15);
   color: #ffffff;
   transform: translateX(4px);
 }
 
-nav ul li a.active {
+.admin-layout nav ul li a.active {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-nav ul li a.active::before {
+.admin-layout nav ul li a.active::before {
   transform: scaleY(1);
 }
 
-nav button {
+.admin-layout nav button {
   width: calc(100% - 32px);
   margin: 0 16px;
   padding: 12px 16px;
@@ -135,7 +151,7 @@ nav button {
   overflow: hidden;
 }
 
-nav button::before {
+.admin-layout nav button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -146,21 +162,21 @@ nav button::before {
   transition: left 0.5s;
 }
 
-nav button:hover {
+.admin-layout nav button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
 }
 
-nav button:hover::before {
+.admin-layout nav button:hover::before {
   left: 100%;
 }
 
-nav button:active {
+.admin-layout nav button:active {
   transform: translateY(0);
 }
 
-/* Main Content Area */
-main {
+/* Main Content Area - Only for Admin */
+.admin-layout main {
   margin-left: 260px;
   padding: 32px;
   overflow-y: auto;
@@ -169,7 +185,7 @@ main {
   min-height: 100vh;
 }
 
-main::before {
+.admin-layout main::before {
   content: '';
   position: absolute;
   top: 0;
@@ -182,12 +198,12 @@ main::before {
   pointer-events: none;
 }
 
-main > * {
+.admin-layout main > * {
   position: relative;
   z-index: 1;
 }
 
-main h1 {
+.admin-layout main h1 {
   color: #1a202c;
   font-size: 2.25rem;
   font-weight: 800;
@@ -199,7 +215,7 @@ main h1 {
   letter-spacing: -0.5px;
 }
 
-main h2 {
+.admin-layout main h2 {
   color: #2d3748;
   font-size: 1.5rem;
   font-weight: 700;
@@ -207,25 +223,25 @@ main h2 {
 }
 
 /* Custom Scrollbar */
-main::-webkit-scrollbar {
+.admin-layout main::-webkit-scrollbar {
   width: 8px;
 }
 
-main::-webkit-scrollbar-track {
+.admin-layout main::-webkit-scrollbar-track {
   background: #e2e8f0;
 }
 
-main::-webkit-scrollbar-thumb {
+.admin-layout main::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
   border-radius: 4px;
 }
 
-main::-webkit-scrollbar-thumb:hover {
+.admin-layout main::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #5568d3 0%, #664a8f 100%);
 }
 
-/* Table Styles */
-table {
+/* Table Styles - Only for Admin */
+.admin-layout table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -235,13 +251,14 @@ table {
   overflow: hidden;
 }
 
-th, td {
+.admin-layout th, 
+.admin-layout td {
   padding: 14px 16px;
   text-align: left;
   border-bottom: 1px solid #e2e8f0;
 }
 
-thead th {
+.admin-layout thead th {
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
   font-weight: 600;
   color: #2d3748;
@@ -250,21 +267,21 @@ thead th {
   letter-spacing: 0.5px;
 }
 
-tbody tr {
+.admin-layout tbody tr {
   transition: all 0.2s ease;
 }
 
-tbody tr:hover {
+.admin-layout tbody tr:hover {
   background-color: #f7fafc;
   transform: translateX(2px);
 }
 
-tbody tr:last-child td {
+.admin-layout tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Button Styles */
-button {
+/* Button Styles - Only for Admin */
+.admin-layout button {
   padding: 10px 16px;
   border-radius: 8px;
   border: none;
@@ -277,18 +294,18 @@ button {
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
-button:hover {
+.admin-layout button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-button:active {
+.admin-layout button:active {
   transform: translateY(0);
 }
 
 /* Responsive Design - Navbar moves to top on small screens */
 @media (max-width: 968px) {
-  nav {
+  .admin-layout nav {
     width: 100%;
     height: auto;
     position: relative;
@@ -298,11 +315,11 @@ button:active {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  nav::before {
+  .admin-layout nav::before {
     height: 3px;
   }
 
-  nav ul {
+  .admin-layout nav ul {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -310,23 +327,23 @@ button:active {
     gap: 8px;
   }
 
-  nav ul li {
+  .admin-layout nav ul li {
     margin-bottom: 0;
     margin: 0;
   }
 
-  nav ul li a {
+  .admin-layout nav ul li a {
     font-size: 0.85rem;
     padding: 10px 14px;
     border-radius: 8px;
   }
 
-  nav ul li a:hover,
-  nav ul li a.active {
+  .admin-layout nav ul li a:hover,
+  .admin-layout nav ul li a.active {
     transform: translateX(0);
   }
 
-  nav button {
+  .admin-layout nav button {
     margin: 12px auto 8px;
     width: calc(100% - 24px);
     max-width: 200px;
@@ -334,67 +351,68 @@ button:active {
     padding: 10px;
   }
 
-  main {
+  .admin-layout main {
     margin-left: 0;
     padding: 24px 20px;
   }
 
-  main h1 {
+  .admin-layout main h1 {
     font-size: 2rem;
     margin-bottom: 20px;
   }
 
-  main h2 {
+  .admin-layout main h2 {
     font-size: 1.35rem;
   }
 }
 
 @media (max-width: 640px) {
-  nav ul {
+  .admin-layout nav ul {
     padding: 8px;
     gap: 6px;
   }
 
-  nav ul li a {
+  .admin-layout nav ul li a {
     font-size: 0.8rem;
     padding: 8px 12px;
   }
 
-  nav button {
+  .admin-layout nav button {
     font-size: 0.85rem;
     margin-top: 10px;
   }
 
-  main {
+  .admin-layout main {
     padding: 20px 16px;
   }
 
-  main h1 {
+  .admin-layout main h1 {
     font-size: 1.75rem;
     margin-bottom: 16px;
   }
 
-  main h2 {
+  .admin-layout main h2 {
     font-size: 1.25rem;
   }
 
-  th, td {
+  .admin-layout th, 
+  .admin-layout td {
     padding: 10px 12px;
     font-size: 0.875rem;
   }
 
-  button {
+  .admin-layout button {
     padding: 8px 12px;
     font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
-  nav ul {
+  .admin-layout nav ul {
     gap: 4px;
   }
 
-  nav ul li a {
+  .admin-layout nav ul li a {
     font-size: 0.75rem;
     padding: 6px 10px;
   }
