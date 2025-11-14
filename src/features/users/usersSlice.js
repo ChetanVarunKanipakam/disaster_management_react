@@ -23,6 +23,7 @@ const usersSlice = createSlice({
         if (index !== -1) {
           state.list[index] = action.payload;
         }
+        console.log(action.payload)
       })
       .addCase(banUser.fulfilled, (state, action) => {
         state.list = state.list.filter(user => user.id !== action.meta.arg);

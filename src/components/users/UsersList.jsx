@@ -7,7 +7,7 @@ const UsersList = ({ users }) => {
   const dispatch = useDispatch();
 
   const handlePromote = (id) => {
-    dispatch(changeUserRole({ id, role: 'volunteer' }));
+    dispatch(changeUserRole({ id, role: 'VOLUNTEER' }));
   };
 
   const handleBan = (id) => {

@@ -32,7 +32,7 @@ const VolunteerProfile = ({ profile, history }) => {
           <div className="vp-info">
             <p><strong>Name:</strong> {profile.userProfile.name}</p>
             <p><strong>Email:</strong> {profile.userProfile.email}</p>
-            <p><strong>Phone:</strong> {profile.phone || 'Not provided'}</p>
+            <p><strong>Phone:</strong> {profile.userProfile.phone || 'Not provided'}</p>
           </div>
         </section>
 
