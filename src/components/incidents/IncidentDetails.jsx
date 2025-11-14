@@ -156,7 +156,7 @@ const IncidentDetails = ({ incident, volunteers, volunteerStatus }) => {
                 </div>
                 <div className="volunteer-actions">
                   <Link
-                    to={`/volunteers/${v.userId}`}
+                    to={`/admin/volunteers/${v.userId}`}
                     className="btn btn-secondary"
                   >
                     View Details

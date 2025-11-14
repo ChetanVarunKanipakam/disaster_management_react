@@ -166,9 +166,9 @@ export default function LandingPage() {
           <div className="grid-3">
             {[
               { icon: MapPin, title: 'Real-Time Mapping', desc: 'Interactive maps showing all incidents with severity filters and geospatial intelligence' },
-              { icon: Zap, title: 'Instant Alerts', desc: 'WebSocket-powered notifications ensure zero-delay communication during emergencies' },
+              { icon: Zap, title: 'Instant Alerts', desc: 'Notifications ensure zero-delay communication during emergencies' },
               { icon: Users, title: 'Smart Assignment', desc: 'Automatically match incidents with nearest available volunteers and teams' },
-              { icon: Shield, title: 'Priority Management', desc: 'AI-driven severity assessment ensures critical cases get immediate attention' },
+              { icon: Shield, title: 'Priority Management', desc: 'Severity assessment ensures critical cases get immediate attention' },
               { icon: BarChart3, title: 'Analytics Dashboard', desc: 'Generate reports and insights for better disaster preparedness and response' },
               { icon: AlertCircle, title: 'Status Tracking', desc: 'Monitor incident progress from report to resolution with transparent updates' }
             ].map((feature, idx) => {
@@ -197,7 +197,7 @@ export default function LandingPage() {
             {[
               { title: 'Faster Response Time', desc: 'Real-time alerts and instant communication reduce response delays by up to 60%' },
               { title: 'Mobile-First Engagement', desc: 'Citizens can report emergencies from anywhere using their smartphones' },
-              { title: 'Efficient Resource Allocation', desc: 'Prioritization algorithms ensure critical cases receive immediate attention' },
+              { title: 'Efficient Resource Allocation', desc: 'Prioritization ensure critical cases receive immediate attention' },
               { title: 'Complete Transparency', desc: 'Citizens can track the status of their reports from submission to resolution' },
               { title: 'Centralized Monitoring', desc: 'Authorities get a unified view of all incidents for better decision-making' },
               { title: 'Geo-Intelligence', desc: 'PostGIS technology enables hotspot analysis and nearest resource tracking' }
@@ -257,7 +257,7 @@ export default function LandingPage() {
             <div>
               <div className="footer-brand">
                 <Shield size={24} color="#dc2626" />
-                <span className="footer-brand-text">DisasterHub</span>
+                <span className="footer-brand-text">DisasterManagement</span>
               </div>
               <p className="footer-description">
                 Connecting communities for faster disaster response and recovery.
@@ -283,13 +283,13 @@ export default function LandingPage() {
               <h4 className="footer-title">Contact</h4>
               <div className="footer-links">
                 <div>Emergency: 911</div>
-                <div>Support: support@disasterhub.com</div>
-                <div>Admin: admin@disasterhub.com</div>
+                <div>Support: support@disastermanagement.com</div>
+                <div>Admin: admin@disastermanagement.com</div>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 DisasterHub. Built to save lives and strengthen communities.</p>
+            <p>&copy; 2025 DisasterManagement. Built to save lives and strengthen communities.</p>
           </div>
         </div>
       </footer>

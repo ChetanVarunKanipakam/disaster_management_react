@@ -109,7 +109,7 @@ const IncidentsMap = ({ incidents }) => {
                       </span>
                     </div>
                   </div>
-                  <Link to={`/incidents/${incident.id}`} className="map-popup-link">
+                  <Link to={`/admin/incidents/${incident.id}`} className="map-popup-link">
                     View Details →
                   </Link>
                 </div>
